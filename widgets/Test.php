@@ -101,6 +101,71 @@ function register_content_controls() {
     );
 
     $this->end_controls_section();
+
+    $this->start_controls_section(
+        'image_section',
+        [
+            'label' => __( 'Image', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+        ]
+    );
+
+    $this->add_control(
+        'image',
+        [
+            'label'   => __( 'Choose Image', 'froala-elementor-addons' ),
+            'type'    => \Elementor\Controls_Manager::MEDIA,
+            'default' => [
+                'url' => \Elementor\Utils::get_placeholder_image_src(),
+            ],
+        ]
+    );
+
+    $this->add_group_control(
+        \Elementor\Group_control_image_size::get_type(),
+        [
+            'name'      => 'image',
+            'label'     => __( 'Image Size', 'froala-elementor-addons' ),
+            'default'   => 'large',
+            'separator' => 'none',
+        ]
+    );
+    $this->end_controls_section();
+
+    $this->start_controls_section(
+        'fag_section',
+        [
+            'label' => __( 'FAQ', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+        ]
+    );
+
+    $repeater = new \Elementor\Repeater();
+
+    $repeater->add_control('title',[
+        'label' => __( 'Title', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::TEXT,
+        'default' => __( 'FAQ Title', 'froala-elementor-addons' ),
+    ]);
+   
+    $repeater->add_control('description',[
+        'label' => __( 'Description', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::TEXTAREA,
+        'default' => __( 'FAQ Description', 'froala-elementor-addons' ),
+    ]);
+
+    $this->add_control(
+        'faq_list',
+        [
+            'label' => __( 'FAQ List', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::REPEATER,
+            'fields' => $repeater->get_controls(),
+            'title_field' => '{{{ title }}}',
+        ]
+    );
+
+    $this->end_controls_section();
+
 }
 
 /**
@@ -191,9 +256,22 @@ protected function render() {
     $alignment = $settings['alignment'];
     $this->add_render_attribute( 'dummy_text', 'class', 'dummy_text' );
     $this->add_inline_editing_attributes( 'dummy_text' );
+   
     ?>
     <div <?php echo $this->get_render_attribute_string( 'dummy_text' ) ?>> <?php echo esc_html( $dummy_text ); ?></div>
     <?php
+    echo \Elementor\Group_control_image_size::get_attachment_image_html( $settings, 'image', 'image' );
+
+    if ( $settings['faq_list'] ) {
+        foreach ( $settings['faq_list'] as $item ) {
+            ?>
+            <div class="faq_item">
+                <div class="faq_title"><?php echo esc_html( $item['title'] ); ?></div>
+                <div class="faq_content"><?php echo esc_html( $item['description'] ); ?></div>
+            </div>
+            <?php
+        }
+    }
 
 
 }
@@ -207,11 +285,37 @@ protected function render() {
  * @access protected
  */
 protected function _content_template() {
+    ?>
+    <# 
+        var image = {
+           id: settings.image.id,
+          url: settings.image.url,
+           size: settings.image_size,
+            dimensions: settings.image_custom_dimensions,
+        }
+
+        var imageUrl = elementor.imagesManager.getImageUrl( image );
+    #>
+
+    <?php
     $this->add_render_attribute( 'dummy_text', 'class', 'dummy_text' );
     $this->add_inline_editing_attributes( 'dummy_text', 'none' );
     ?>
     <div <?php echo $this->get_render_attribute_string( 'dummy_text' ) ?>> {{ settings.dummy_text }}</div>
+    <image src="{{{imageUrl}}}">
+    <# if ( settings.faq_list.length ) { #>
+		<div class="faq_item">
+			<# _.each( settings.faq_list, function( item ) { #>
+                <div class="faq_title ">{{{ item.title }}}</div>
+                <div class="faq_content">{{{ item.description }}}</div>
+				
+			<# }); #>
+            </div>
+		<# } #>
     <?php
+  
+
+
 }
 
 }

@@ -10,7 +10,8 @@ License: GPLv2 or later
 Text Domain: froala-elementor-addons
 Domain Path: /languages/
 */
-
+require_once __DIR__ . '/vendor/autoload.php';
+use User\Froala\Assets\Frontend\Front_end_assets;
 final class Froala_Elementor_Addons {
 
 	/**
@@ -141,6 +142,32 @@ final class Froala_Elementor_Addons {
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
         // froala categories
         add_action( 'elementor/elements/categories_registered', [ $this, 'froala_elementor_category' ] );
+		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'froala_styles' ] );
+		add_action( 'elementor/frontend/after_enqueue_scripts', [ $this, 'froala_scripts' ] );
+
+	}
+
+	/**
+	 * froala styles
+	 */
+
+	function froala_styles() {
+		wp_enqueue_style( 'froala_blocks', plugins_url( '/assets/css/froala_blocks.css', __FILE__ ) );
+		wp_enqueue_style( 'froala-flipclock', plugins_url( '/assets/css/flipclock.css', __FILE__ ) );
+		wp_enqueue_style( 'froala-style', plugins_url( '/assets/css/frola-style.css', __FILE__ ) );
+		wp_enqueue_style( 'froala-team-css', plugins_url( '/widgets/team/style.css', __FILE__ ) );
+		
+		
+		
+	}
+
+	/**
+	 * froala scripts
+	 */
+	function froala_scripts() {
+		wp_enqueue_script( 'froala-flipclock', plugins_url( '/assets/js/flipclock.min.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+		wp_enqueue_script( 'froala-scripts', plugins_url( '/assets/js/scripts.js', __FILE__ ), array( 'jquery' ), time(), true );
+		
 	}
 
     /**
@@ -244,11 +271,16 @@ final class Froala_Elementor_Addons {
 	public function init_widgets() {
 
 		// Include Widget files
-		require_once( __DIR__ . '/widgets/Test.php' );
+
+		require_once( __DIR__ . '/widgets/price-table/design-1.php' );
+		require_once( __DIR__ . '/widgets/flipclock/flipclock.php' );
+		require_once( __DIR__ . '/widgets/team/Team.php' );
 
 		// Register widget
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Froala_Test_addons() );
-
+		
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Froala_Price_table() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Flipclock() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Team() );
 	}
 
 }

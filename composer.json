@@ -1,0 +1,14 @@
+{
+  "name": "user/froala",
+  "description": "free elemenotr addons from froala",
+  "type": "wordpress-plugin",
+  "license": "GPLv2",
+  "autoload": {
+    "psr-4": {
+      "User\\Froala\\": "includes/"
+    },
+    "files": []
+  },
+  "minimum-stability": "dev",
+  "require": {}
+}
