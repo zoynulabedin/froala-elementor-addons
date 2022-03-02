@@ -316,6 +316,60 @@ protected function register_style_controls() {
           ],
     ]);
 
+    $this->add_control('background_color_5',[
+        'label' => __( 'Social Icon Background Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-5 .social-5' => 'background:{{VALUE}};',
+           
+       
+        ],
+        'default' => '#0FACF3',
+        'condition' => [
+            'team_select' => '5',
+          ],
+    ]);
+       
+    $this->add_control( 'content_normal_color_5',[
+        'label' => __( 'Content Background color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-5 .team-conten-5' => 'background:{{VALUE}};',
+        ],
+        'default' => 'rgba(0, 0, 0, 0.6);',
+        'condition' => [
+            'team_select' => '5',
+            ],
+    ]);
+    
+    $this->add_group_control(
+        \Elementor\Group_Control_Background::get_type(),
+        [
+            'name' => 'content_normal_color_6',
+            'label' => esc_html__( 'Overlay Color', 'froala-elementor-addons' ),
+            'types' => [ 'classic', 'gradient'],
+            'selector' => '{{WRAPPER}} .our-team-6 .team-content-6',
+            'condition' => [
+                'team_select' => '6',
+                ],
+        ]
+    );
+
+    $this->add_control( 'content_normal_color_7',[
+        'label' => __( 'Background color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-7:after' => 'background:{{VALUE}};',
+            '{{WRAPPER}} .our-team-7 .team-content-7:after' => 'background:{{VALUE}};',
+            '{{WRAPPER}} .our-team-7 .team-content-7' => 'border-bottom:3px solid{{VALUE}};',
+            
+        ],
+        'default' => 'rgba(43, 193, 234, 0.6)',
+        'condition' => [
+            'team_select' => '7',
+            ],
+    ]);
+
     $this->end_controls_section();
 
     $this->start_controls_section(
@@ -500,7 +554,7 @@ protected function register_style_controls() {
           ],
     ]);
     $this->add_control('team_name_4_hover',[
-        'label' => __( 'Name Color', 'froala-elementor-addons' ),
+        'label' => __( 'Hover Color', 'froala-elementor-addons' ),
         'type' => \Elementor\Controls_Manager::COLOR,
         'selectors' => [
             '{{WRAPPER}} .our-team-4:hover .title-4' => 'color:{{VALUE}};',
@@ -510,6 +564,48 @@ protected function register_style_controls() {
             'team_select' => '4',
           ],
     ]);
+
+
+    
+    $this->add_control('team_name_5_color',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-5 .title-5' => 'color:{{VALUE}};',
+        ],
+        'default' => '#ffffff',
+        'condition' => [
+            'team_select' => '5',
+          ],
+    ]);
+
+       
+    $this->add_control('team_name_6_color',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-6 .title-6' => 'color:{{VALUE}};',
+        ],
+        'default' => '#ffffff',
+        'condition' => [
+            'team_select' => '6',
+          ],
+    ]);
+
+    $this->add_control('team_name_7_color',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-7 .title-7' => 'color:{{VALUE}};',
+        ],
+        'default' => '#000000',
+        'condition' => [
+            'team_select' => '7',
+          ],
+    ]);
+
+
+
 
     
     $this->add_group_control(
@@ -533,6 +629,38 @@ protected function register_style_controls() {
                ]
             );
     
+            $this->add_group_control(
+                \Elementor\Group_Control_Typography::get_type(),
+                   [
+                     'name' => 'name_typography_5',
+                    'selector' => '{{WRAPPER}} .our-team-5 .title-5',
+                    'condition' => [
+                       'team_select' => '5',
+                     ],
+                   ]
+                );
+                $this->add_group_control(
+                    \Elementor\Group_Control_Typography::get_type(),
+                       [
+                         'name' => 'name_typography_6',
+                        'selector' => '{{WRAPPER}} .our-team-6 .title-6',
+                        'condition' => [
+                           'team_select' => '6',
+                         ],
+                       ]
+                    );
+                    $this->add_group_control(
+                        \Elementor\Group_Control_Typography::get_type(),
+                           [
+                             'name' => 'name_typography_7',
+                            'selector' => '{{WRAPPER}} .our-team-7 .title-7',
+                            'condition' => [
+                               'team_select' => '7',
+                             ],
+                           ]
+                        );
+            
+        
 
     $this->end_controls_section();
 
@@ -598,6 +726,17 @@ protected function register_style_controls() {
                 'team_select' => '4',
                 ],
             ]);
+            $this->add_control('team_position_5',[
+                'label' => __( 'Position Color', 'froala-elementor-addons' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .our-team-5 .post-5' => 'color:{{VALUE}};',
+                ],
+                'default' => '#ffffff',
+                'condition' => [
+                    'team_select' => '5',
+                    ],
+                ]);
             $this->add_control('team_position_4_hover',[
                 'label' => __( 'Hover Color', 'froala-elementor-addons' ),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -609,7 +748,29 @@ protected function register_style_controls() {
                     'team_select' => '4',
                     ],
                 ]);
+                $this->add_control('team_position_6',[
+                    'label' => __( 'Position Color', 'froala-elementor-addons' ),
+                    'type' => \Elementor\Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .our-team-6 .post-6' => 'color:{{VALUE}};',
+                    ],
+                    'default' => '#ffffff',
+                    'condition' => [
+                        'team_select' => '6',
+                        ],
+                    ]);
     
+                    $this->add_control('team_position_7',[
+                        'label' => __( 'Position Color', 'froala-elementor-addons' ),
+                        'type' => \Elementor\Controls_Manager::COLOR,
+                        'selectors' => [
+                            '{{WRAPPER}} .our-team-7 .post-7' => 'color:{{VALUE}};',
+                        ],
+                        'default' => '#000000',
+                        'condition' => [
+                            'team_select' => '7',
+                            ],
+                        ]);
 
             $this->add_group_control(
                 \Elementor\Group_Control_Typography::get_type(),
@@ -632,6 +793,39 @@ protected function register_style_controls() {
                          ],
                        ]
                     );
+
+                    $this->add_group_control(
+                        \Elementor\Group_Control_Typography::get_type(),
+                           [
+                             'name' => 'position_typography_5',
+                            'selector' => '{{WRAPPER}} .our-team-5 .post-5',
+                            'condition' => [
+                               'team_select' => '5',
+                             ],
+                           ]
+                        );
+                        $this->add_group_control(
+                            \Elementor\Group_Control_Typography::get_type(),
+                               [
+                                 'name' => 'position_typography_6',
+                                'selector' => '{{WRAPPER}} .our-team-6 .post-6',
+                                'condition' => [
+                                   'team_select' => '6',
+                                 ],
+                               ]
+                            );
+                            $this->add_group_control(
+                                \Elementor\Group_Control_Typography::get_type(),
+                                   [
+                                     'name' => 'position_typography_7',
+                                    'selector' => '{{WRAPPER}} .our-team-7 .post-7',
+                                    'condition' => [
+                                       'team_select' => '7',
+                                     ],
+                                   ]
+                                );
+           
+       
    
     $this->end_controls_section();
 
@@ -716,6 +910,69 @@ protected function register_style_controls() {
             ],
     ]);
 
+    $this->add_control( 'social_icon_normal_color_5',[
+        'label' => __( 'color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-3 .social-3 li a:after' => 'background:{{VALUE}};',
+        ],
+        'default' => '#DB162F',
+        'condition' => [
+            'team_select' => '5',
+            ],
+    ]);
+
+    $this->add_control( 'social_icon_normal_colorbg_6',[
+        'label' => __( 'color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-6 .social-6 li a' => 'color:{{VALUE}};',
+        ],
+        'default' => '#DB162F',
+        'condition' => [
+            'team_select' => '6',
+            ],
+    ]);
+    $this->add_group_control(
+        \Elementor\Group_Control_Background::get_type(),
+        [
+            'name' => 'social_icon_normal_colorbg_6',
+            'label' => esc_html__( 'Background', 'froala-elementor-addons' ),
+            'types' => [ 'classic', 'gradient'],
+            'selector' => '{{WRAPPER}} .our-team-6 .social-6 li a',
+            'condition' => [
+                'team_select' => '6',
+                ],
+        ]
+    );
+
+    $this->add_control( 'social_icon_normal_colorbg_7',[
+        'label' => __( 'Background color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-7 .social-7 li a' => 'background:{{VALUE}};',
+        ],
+        'default' => '#0B579F',
+        'condition' => [
+            'team_select' => '7',
+            ],
+    ]);
+    $this->add_control( 'social_icon_normal_color_7',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-7 .social-7 li a' => 'color:{{VALUE}};',
+        ],
+        'default' => '#ffffff',
+        'condition' => [
+            'team_select' => '7',
+            ],
+    ]);
+
+    
+ 
+   
+
 
     $this->end_controls_tab();
    
@@ -786,6 +1043,66 @@ protected function register_style_controls() {
             'team_select' => '3',
             ],
     ]);
+
+    $this->add_control( 'social_icon_hover_bgclor_5',[
+        'label' => __( 'Background Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-5 .social-5 li a:hover' => 'color:{{VALUE}} !important;',
+        ],
+        'default' => '#E06F06',
+        'condition' => [
+            'team_select' => '5',
+            ],
+    ]);
+
+    $this->add_group_control(
+        \Elementor\Group_Control_Background::get_type(),
+        [
+            'name' => 'social_icon_normal_colorbg_hover_6',
+            'label' => esc_html__( 'Hover Background', 'froala-elementor-addons' ),
+            'types' => [ 'classic', 'gradient'],
+            'selector' => '{{WRAPPER}} .our-team-6 .social-6 li a:hover',
+            'condition' => [
+                'team_select' => '6',
+                ],
+        ]
+    );
+    $this->add_control( 'social_icon_hover_bgclor_6',[
+        'label' => __( 'Icon Hover Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-6 .social-6 li a:hover' => 'color:{{VALUE}} !important;',
+        ],
+        'default' => '#ffffff',
+        'condition' => [
+            'team_select' => '6',
+            ],
+    ]);
+    $this->add_control( 'social_icon_hover_bgclor_7',[
+        'label' => __( 'Background Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-7 .social-7 li a:hover' => 'background:{{VALUE}} !important;',
+        ],
+        'default' => '#F6931E',
+        'condition' => [
+            'team_select' => '7',
+            ],
+    ]);
+    $this->add_control( 'social_icon_hover_clor_7',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-7 .social-7 li a:hover' => 'color:{{VALUE}} !important;',
+        ],
+        'default' => '#ffffff',
+        'condition' => [
+            'team_select' => '7',
+            ],
+    ]);
+
+    
 
     /***
      * end style 2
