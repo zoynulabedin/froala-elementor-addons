@@ -144,6 +144,8 @@ final class Froala_Elementor_Addons {
         add_action( 'elementor/elements/categories_registered', [ $this, 'froala_elementor_category' ] );
 		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'froala_styles' ] );
 		add_action( 'elementor/frontend/after_enqueue_scripts', [ $this, 'froala_scripts' ] );
+		
+		
 
 	}
 
