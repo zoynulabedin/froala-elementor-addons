@@ -69,7 +69,7 @@ public function get_categories() {
 protected function register_controls() {
 
     $this->register_content_controls();
-    // $this->register_style_controls();
+    $this->register_style_controls();
 
 }
 
@@ -183,7 +183,7 @@ function register_content_controls() {
                     'Item' => __( 'Item #3', 'froala-elementor-addons' ),
                 ],
             ],
-            'title_field' => '{{{ Item }}}',
+            'title_field' => '{{{ content_items }}}',
         ]
     );
 
@@ -245,23 +245,23 @@ function register_content_controls() {
  * @since 1.0.0
  * @access protected
  */
-// protected function register_style_controls() {
+protected function register_style_controls() {
 
-//     $this->start_controls_section(
-//         'style_section',
-//         [
-//             'label' => __( 'Text Style', 'froala-elementor-addons' ),
-//             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-//         ]
-//     );
+    $this->start_controls_section(
+        'style_section',
+        [
+            'label' => __( 'Text Style', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+    );
 
 
-
-   
-//     $this->end_controls_section();
 
    
-// }
+    $this->end_controls_section();
+
+   
+}
 
 /**
  * Render Blank widget output on the frontend.
