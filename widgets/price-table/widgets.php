@@ -27,7 +27,7 @@ public function get_name() {
  *
  */
 public function get_title() {
-    return __( 'Froala Price Table', 'froala-elementor-addons' );
+    return __( 'Price Table', 'froala-elementor-addons' );
 }
 
 /**
@@ -224,17 +224,7 @@ function register_content_controls() {
 
     $this->end_controls_section();
 
-    $this->start_controls_section(
-        'price_table_settings',
-        [
-            'label' => __( 'Settings', 'froala-elementor-addons' ),
-            'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
-        ]
-    );
-
-
-    $this->end_controls_section();
-
+  
 }
 
 /**
@@ -246,18 +236,187 @@ function register_content_controls() {
  * @access protected
  */
 protected function register_style_controls() {
-
     $this->start_controls_section(
-        'style_section',
+        'price_background_section',
         [
-            'label' => __( 'Text Style', 'froala-elementor-addons' ),
+            'label' => __( 'Background', 'froala-elementor-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+
+        
+    );
+
+    $this->add_control(
+        'price_background_color',
+        [
+            'label' => __( 'Background Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .pricingTable:before' => 'background-color: {{VALUE}}',
+            ],
+            'default' => '#054982',
         ]
     );
 
 
+    
+    $this->end_controls_section();
+
+
+    $this->start_controls_section(
+        'style_title',
+        [
+            'label' => __( 'Title', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+    );
+
+    $this->add_group_control(
+        \Elementor\Group_Control_Typography::get_type(),
+        [
+            'name' => 'title_typography',
+            'label' => __( 'Typography', 'froala-elementor-addons' ),
+            'selector' => '{{WRAPPER}} h3.title',
+        ]
+    );
+
+    $this->add_control(
+        'title_color',
+        [
+            'label' => __( 'Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} h3.title' => 'color: {{VALUE}}',
+            ],
+        ]
+    );
 
    
+    $this->end_controls_section();
+
+    $this->start_controls_section(
+        'style_Price',
+        [
+            'label' => __( 'Price', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+    );
+
+    $this->add_group_control(
+        \Elementor\Group_Control_Typography::get_type(),
+        [
+            'name' => 'amount_typography',
+            'label' => __( 'Typography', 'froala-elementor-addons' ),
+            'selector' => '{{WRAPPER}} span.amount',
+        ]
+    );
+
+    $this->add_control(
+        'amount_color',
+        [
+            'label' => __( 'Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} span.amount' => 'color: {{VALUE}}',
+            ],
+        ]
+    );
+
+    $this->end_controls_section();
+
+    
+    $this->start_controls_section(
+        'style_Price_text',
+        [
+            'label' => __( 'Price Text', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+    );
+
+    $this->add_group_control(
+        \Elementor\Group_Control_Typography::get_type(),
+        [
+            'name' => 'amount_text_typography',
+            'label' => __( 'Typography', 'froala-elementor-addons' ),
+            'selector' => '{{WRAPPER}} span.duration',
+        ]
+    );
+
+    $this->add_control(
+        'amount_text_color',
+        [
+            'label' => __( 'Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} span.duration' => 'color: {{VALUE}}',
+            ],
+        ]
+    );
+
+    $this->end_controls_section();
+
+
+        
+    $this->start_controls_section(
+        'style_content',
+        [
+            'label' => __( 'Content', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+    );
+
+    
+    $this->add_group_control(
+        \Elementor\Group_Control_Typography::get_type(),
+        [
+            'name' => 'content_typography',
+            'label' => __( 'Typography', 'froala-elementor-addons' ),
+            'selector' => '{{WRAPPER}} .pricing-content li',
+        ]
+    );
+
+    $this->add_control(
+        'content_color',
+        [
+            'label' => __( 'Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .pricing-content li' => 'color: {{VALUE}}',
+            ],
+        ]
+    );
+
+    $this->end_controls_section();
+
+         
+    $this->start_controls_section(
+        'style_button',
+        [
+            'label' => __( 'Button', 'froala-elementor-addons' ),
+            'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+        ]
+    );
+
+    $this->add_group_control(
+        \Elementor\Group_Control_Typography::get_type(),
+        [
+            'name' => 'button_typography',
+            'label' => __( 'Typography', 'froala-elementor-addons' ),
+            'selector' => '{{WRAPPER}} .pricingTable-signup a',
+        ]
+    );
+
+    $this->add_control(
+        'button_color',
+        [
+            'label' => __( 'Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .pricingTable-signup a' => 'color: {{VALUE}}',
+            ],
+        ]
+    );
+
     $this->end_controls_section();
 
    
