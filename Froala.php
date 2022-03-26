@@ -158,6 +158,9 @@ final class Froala_Elementor_Addons {
 		wp_enqueue_style( 'froala-flipclock', plugins_url( '/assets/css/flipclock.css', __FILE__ ) );
 		wp_enqueue_style( 'froala-style', plugins_url( '/assets/css/frola-style.css', __FILE__ ) );
 		wp_enqueue_style( 'froala-team-css', plugins_url( '/widgets/team/style.css', __FILE__ ) );
+		wp_enqueue_style( 'froala-service-css', plugins_url( '/widgets/service/style.css', __FILE__ ) );
+		wp_enqueue_style( 'froala-price-table-css', plugins_url( '/widgets/price-table/style.css', __FILE__ ) );
+		wp_enqueue_style( 'froala-email-signature-css', plugins_url( '/widgets/email-signature/style.css', __FILE__ ) );
 		
 		
 		
@@ -274,15 +277,21 @@ final class Froala_Elementor_Addons {
 
 		// Include Widget files
 
-		require_once( __DIR__ . '/widgets/price-table/design-1.php' );
+		require_once( __DIR__ . '/widgets/price-table/widgets.php' );
 		require_once( __DIR__ . '/widgets/flipclock/flipclock.php' );
-		require_once( __DIR__ . '/widgets/team/Team.php' );
+		require_once( __DIR__ . '/widgets/team/widgets.php' );
+		require_once( __DIR__ . '/widgets/service/widgets.php');
+		require_once( __DIR__ . '/widgets/email-signature/widgets.php');
+		
 
 		// Register widget
 		
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Froala_Price_table() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Flipclock() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Team() );
+	     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Service());
+	     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \EmailSignature());
+		
 	}
 
 }

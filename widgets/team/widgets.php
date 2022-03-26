@@ -66,7 +66,7 @@ public function get_categories() {
  * @since 1.0.0
  * @access protected
  */
-protected function _register_controls() {
+protected function register_controls() {
 
     $this->register_content_controls();
     $this->register_style_controls();
@@ -117,7 +117,7 @@ function register_content_controls() {
             '17' => __( 'Style 17', 'froala-elementor-addons' ),
             '18' => __( 'Style 18', 'froala-elementor-addons' ),
             '19' => __( 'Style 19', 'froala-elementor-addons' ),
-            '20' => __( 'Style 20', 'froala-elementor-addons' ),
+            
         ],
     ]
 );
@@ -157,7 +157,7 @@ function register_content_controls() {
         [
             'label' => __( 'Position', 'froala-elementor-addons' ),
             'type' => \Elementor\Controls_Manager::TEXT,
-            'default' => __( 'John Doe', 'froala-elementor-addons' ),
+            'default' => __( 'CEO and Founder', 'froala-elementor-addons' ),
         ]
     );
 
@@ -214,18 +214,10 @@ function register_content_controls() {
                     'icon_url' => esc_html__( 'Url', 'froala-elementor-addons' ),
                     
                 ],
-                [
-                    'icon' => esc_html__( 'Twitter', 'froala-elementor-addons' ),
-                    'icon_url' => esc_html__( 'Url', 'froala-elementor-addons' ),
-                    
-                ],
-                [
-                    'icon' => esc_html__( 'Instagram', 'froala-elementor-addons' ),
-                    'icon_url' => esc_html__( 'Url', 'froala-elementor-addons' ),
-                    
-                ],
+                
             ],
-            'title_field' => '{{{ list_icon }}}',
+            'title_field' => '<# print(elementor.helpers.getSocialNetworkNameFromIcon( icon )); #>',
+            
         ]
     );
 
@@ -554,6 +546,38 @@ protected function register_style_controls() {
             'team_select' => '18',
             ],
     ]);
+
+
+    $this->add_control( 'content_normal_color_base_19',[
+        'label' => __( 'Background Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-19 .team-content-19' => 'background:{{VALUE}};',    
+            '{{WRAPPER}} .our-team-19 .team-content-19:before' => 'background:{{VALUE}};', 
+            '{{WRAPPER}} .our-team-19 .team-content-19:after' => 'background:{{VALUE}};',      
+        ],
+        'default' => '#3f2b4f',
+        'condition' => [
+            'team_select' => '19',
+            ],
+    ]);
+    $this->add_control( 'content_normal_color_border_19',[
+        'label' => __( 'Border Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+           
+            '{{WRAPPER}} .our-team-19 .title-19:before' => 'background:{{VALUE}} !important;',    
+            '{{WRAPPER}} .our-team-19 .title-19:after' => 'background:{{VALUE}} !important;',    
+        ],
+        'default' => '#ff5543',
+        'condition' => [
+            'team_select' => '19',
+            ],
+    ]);
+
+
+
+
     
 
     $this->end_controls_section();
@@ -934,6 +958,19 @@ protected function register_style_controls() {
           ],
     ]);
 
+    $this->add_control('team_name_19_color',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-19 .title-19' => 'color:{{VALUE}};',
+           
+        ],
+        'default' => '#ffffff',
+        'condition' => [
+            'team_select' => '19',
+          ],
+    ]);
+
     
 
 
@@ -1102,6 +1139,16 @@ protected function register_style_controls() {
                 'selector' => '{{WRAPPER}} .title-18',
                 'condition' => [
                     'team_select' => '18',
+                    ],
+                ]
+            );
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+                [
+                    'name' => 'name_typography_19',
+                'selector' => '{{WRAPPER}} .title-19',
+                'condition' => [
+                    'team_select' => '19',
                     ],
                 ]
             );
@@ -1341,6 +1388,17 @@ protected function register_style_controls() {
                 'team_select' => '18',
                 ],
             ]);
+              $this->add_control('team_position_19',[
+            'label' => __( 'Position Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .our-team-19 .post-19' => 'color:{{VALUE}};',
+            ],
+            'default' => '#ffffff',
+            'condition' => [
+                'team_select' => '19',
+                ],
+            ]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -1498,6 +1556,17 @@ protected function register_style_controls() {
                 ]
             );
             
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+                [
+                    'name' => 'position_typography_19',
+                'selector' => '{{WRAPPER}} .post-19',
+                'condition' => [
+                    'team_select' => '19',
+                    ],
+                ]
+            );
+            
                     
                    
                
@@ -1549,7 +1618,8 @@ protected function register_style_controls() {
             'label' => __( 'Social Icons', 'froala-elementor-addons' ),
             'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
-                'team_select' => array('2','3','4','5','6','7','9','10','11','12','13','14','15','16','17','18'),
+                'team_select' => array('2','3','4','5','6','7','9','10','11','12','13','14','15','16','17','18','19'),
+                
               ],
             
         ]
@@ -1900,6 +1970,17 @@ protected function register_style_controls() {
         'default' => '#fff',
         'condition' => [
             'team_select' => '18',
+            ],
+    ]);
+    $this->add_control( 'social_icon_color_19',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-19 .social-links-19 li a ' => 'color:{{VALUE}};',
+        ],
+        'default' => '#aad6e1',
+        'condition' => [
+            'team_select' => '19',
             ],
     ]);
 
@@ -2255,6 +2336,17 @@ protected function register_style_controls() {
             ],
     ]);
 
+    $this->add_control( 'social_icon_color_hover_19',[
+        'label' => __( 'Color', 'froala-elementor-addons' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .our-team-19 .social-links-19 li a:hover ' => 'color:{{VALUE}};',
+        ],
+        'default' => '#ff5543',
+        'condition' => [
+            'team_select' => '19',
+            ],
+    ]);
 
 
 
@@ -2295,7 +2387,7 @@ protected function render() {
     $team_position  = $settings['team_position'];
     $social_list  = $settings['social_list'];
     $select_style  = $settings['team_select'];
-    $team_email = $settings['team_email'];
+    $team_email = $settings['team_email_control'];
   
 switch ($select_style) {
     case '1':
@@ -2850,33 +2942,7 @@ switch ($select_style) {
                 </div>
                 <?php 
                 break;
-                case '20':
-                    ?>
-                <div class="our-team-20">
-                <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html( $settings, 'full', 'team_image' );?>
-                <div class="team-content-20">
-                <?php if(!empty($team_name)):?>
-                    <h3 class="team-prof-20">
-                    <?php echo $team_name;?>
-                        <small><?php echo $team_position;?></small>
-                    </h3>
-                    <?php endif;?>
-                    <ul class="social-link-20">
-                    <?php foreach ($settings['social_list'] as $list):
-                               $urlinfo = $list['icon_url'];
-                                $url = $urlinfo['url'];
-                                $target = $urlinfo['is_external'] ? ' target="_blank"' : '';
-                                $nofollow = $urlinfo['nofollow'] ? ' rel="nofollow"' : '';
-                                $icon = $list['icon'];
-                                $icon_html = '<i class="'.$icon['value'].'"></i>';
-                               ?>
-                            <li><a href="<?php echo esc_url($url); ?>"<?php echo $target; $nofollow;?> ><?php echo $icon_html; ?></a></li>
-                            <?php endforeach;?>
-                    </ul>
-                </div>
-            </div>
-                    <?php 
-                    break;
+
     default:
        ?>
           <div class="our-team">

@@ -1760,7 +1760,7 @@
   content: "";
   width: 60%;
   height: 38px;
-  background: #3f2b4f;
+  background: red;
   position: absolute;
   top: -12px;
   transform: rotate(15deg);
@@ -1886,83 +1886,3 @@
     top: -83px;
   }
 }
-
-/*
-* style 20
-*/
-.our-team-20 {
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-  box-shadow: 0 0 5px #808080;
-}
-.our-team-20 img {
-  width: 100%;
-  height: auto;
-  transition: all 0.5s linear 0s;
-}
-.our-team-20:hover img {
-  transform: scale(1.2);
-}
-.our-team-20 .team-content-20 {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 40px 20px;
-  background: rgba(152, 197, 112, 0.95);
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-.our-team-20:hover .team-content-20 {
-  opacity: 1;
-}
-.our-team-20 .team-prof-20 {
-  margin: 20px 0;
-  position: relative;
-  top: 13%;
-  font-size: 25px;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.3);
-  letter-spacing: 1px;
-  text-transform: capitalize;
-}
-.our-team-20 .team-prof-20 small {
-  display: block;
-  font-size: 13px;
-  color: #fff;
-  margin-top: 10px;
-  text-transform: uppercase;
-}
-.our-team-20 .social-link-20 {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  position: relative;
-  top: 13%;
-}
-.our-team-20 .social-link-20 li {
-  margin-right: 5px;
-  display: inline-block;
-}
-.our-team-20 ul.social-link-20 li a {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  border-radius: 5px;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.3);
-  display: inline-block;
-}
-.our-team-20 .social-link-20 li a:hover {
-  background: #fff;
-  color: #333;
-  text-decoration: none;
-}
-@media only screen and (max-width: 990px) {
-  .our-team-20 {
-    margin-bottom: 20px;
-  }
-}
-/* End Our Team */
