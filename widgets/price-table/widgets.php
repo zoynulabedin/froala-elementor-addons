@@ -333,39 +333,44 @@ protected function render() {
  */
 protected function _content_template() {
 
-    // $this->add_render_attribute( 'title', 'class', 'heading' );
-    // $this->add_inline_editing_attributes( 'title' );
-    // $this->add_render_attribute( 'Price', 'class', 'h1 mt-5 mb-5' );
-    // $this->add_inline_editing_attributes( 'Price' );
-    // $this->add_render_attribute( 'button_text', 'class', 'btn btn-primary' );
-    // if ( ! empty( $settings['button_link']['url'] ) ) {
-    //     $this->add_link_attributes( 'button_link', $settings['button_link'] );
-    // }
-    // $this->add_inline_editing_attributes( 'button_text' );
+   
+    $this->add_render_attribute( 'title', 'class', 'title' );
+    $this->add_inline_editing_attributes( 'title' );
+    $this->add_render_attribute( 'price', 'class', 'amount' );
+    $this->add_inline_editing_attributes( 'price' );
+    $this->add_render_attribute( 'duration', 'class', 'duration' );
+    $this->add_inline_editing_attributes( 'duration' );
+    $this->add_render_attribute( 'button_text', 'class', 'btn btn-primary' );
+ 
+    if ( ! empty( $settings['price_link']['url'] ) ) {
+        $this->add_link_attributes( 'price_link', $settings['price_link'] );
+    }
     
     ?>
+    
 
 
-    <!-- <div class="pricingTable">
+    <div class="pricingTable">
         <div class="pricingTable-header">
-            <h3 class="title">Standard</h3>
+            <h3  <?php echo $this->get_render_attribute_string( 'title' ) ?> >{{{settings.title}}}</h3>
             <div class="price-value">
-                <span class="amount">$10.00</span>
-                <span class="duration">Per Month</span>
+                <span <?php echo $this->get_render_attribute_string( 'price' ) ?> >{{{settings.price}}}</span>
+                <span <?php echo $this->get_render_attribute_string( 'duration' ) ?>>{{{settings.duration}}}</span>
             </div>
         </div>
+        <# if ( settings.content_items.length ) { #>
         <ul class="pricing-content">
-            <li>50GB Disk Space</li>
-            <li>50 Email Accounts</li>
-            <li>50GB Bandwidth</li>
-            <li class="disable">Maintenance</li>
-            <li class="disable">15 Subdomains</li>
+        <# _.each( settings.content_items, function( item ) { #>
+            <li>{{{ item.content_items }}}</li>
+            
+            <# }); #>
         </ul>
+        <# } #>
         <div class="pricingTable-signup">
-            <a href="#">Sign Up</a>
+            <a <?php echo $this->get_render_attribute_string( 'price_link' ); ?>>{{{settings.button_text }}}</a>
         </div>
     </div>
-       -->
+      
 
     <?php
 }
