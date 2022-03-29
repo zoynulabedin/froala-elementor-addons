@@ -397,6 +397,18 @@ protected function register_style_controls() {
         ]
     );
 
+        $this->start_controls_tabs(
+            'style_tabs'
+        );
+
+        $this->start_controls_tab(
+            'style_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
+            ]
+        );
+
+
     $this->add_group_control(
         \Elementor\Group_Control_Typography::get_type(),
         [
@@ -417,6 +429,48 @@ protected function register_style_controls() {
         ]
     );
 
+    
+    $this->end_controls_tab();
+
+    $this->start_controls_tab(
+        'style_hover_tab',
+        [
+            'label' => esc_html__( 'Hover', 'plugin-name' ),
+        ]
+    );
+
+    $this->add_group_control(
+        \Elementor\Group_Control_Typography::get_type(),
+        [
+            'name' => 'button_hover_typography',
+            'label' => __( 'Typography', 'froala-elementor-addons' ),
+            'selector' => '{{WRAPPER}} .pricingTable-signup a:hover',
+        ]
+    );
+
+    $this->add_control(
+        'button_hover_color',
+        [
+            'label' => __( 'Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .pricingTable-signup a:hover' => 'color: {{VALUE}}',
+            ],
+        ]
+    );
+
+    $this->add_control('background_color',
+        [
+            'label' => __( 'Background Color', 'froala-elementor-addons' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .pricingTable-signup a:hover' => 'background-color: {{VALUE}}',
+            ],
+        ]
+    );
+
+    $this->end_controls_tab();
+    $this->end_controls_tabs();
     $this->end_controls_section();
 
    
@@ -438,6 +492,7 @@ protected function render() {
     $duration   = $settings['duration'];
     $items      = $settings['content_items'];
     $button_text= $settings['button_text'];
+    $selectdesign= $settings['selectdesign'];
 
     $this->add_render_attribute( 'title', 'class', 'title' );
     $this->add_inline_editing_attributes( 'title' );
@@ -450,10 +505,10 @@ protected function render() {
     if ( ! empty( $settings['price_link']['url'] ) ) {
         $this->add_link_attributes( 'price_link', $settings['price_link'] );
     }
-    ?>
-
-
-
+    
+    switch($selectdesign){
+        case '1': ?>
+            
         <div class="pricingTable">
             <div class="pricingTable-header">
                 <h3 <?php echo $this->get_render_attribute_string( 'title' ) ?>> <?php echo esc_html( $title ); ?></h3>
@@ -476,6 +531,18 @@ protected function render() {
             </div>
             <?php endif;?>
         </div>
+
+        <?php
+        break;
+        case '2': ?>
+
+        <?php
+    }
+
+    ?>
+
+
+
 
     <?php 
 
